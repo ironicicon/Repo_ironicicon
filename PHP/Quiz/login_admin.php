@@ -7,7 +7,7 @@ $Uname=$_POST['Uname'];
 $pass=$_POST['Pass'];
 $sql="select * from Login_admin where Uname='".$Uname."' and Pass='".$pass."'";
 $result=mysql_query($sql);
-echo $sql;
+//echo $sql;
 $count=mysql_num_rows($result);
 if($count==1)//match found
 {
@@ -23,6 +23,12 @@ else
 <html>
 <head>
 <title>Login Page</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 <style type="text/css">
 body
 {
@@ -83,27 +89,25 @@ font-family: calibri;
 }
 </style>
 </head>
-<body align="center">
-<div id="header"><br/>
-<h1 align="left">Leadership Resilience Profile Login Page</h1>
-<p align="left"><font size="2">Login to fetch reports</font></p>
-<div id="req" align="left"><font color="brown">* Required</font></div>
-<div id="questImg"><img src="images/quest.jpg" width="50px" height="50px" title="Help" /></div>
+<body class="container">
+<div class="row col-lg-12" style="margin-top:10px;">
+<h1 class="page-header" align="left">Leadership Resilience Profile <b>ADMIN</b> Login Page</h1>
 </div>
-<form action="login_admin.php" method="post">
-<table border="0">
-<tr>
-	<td>Username</td>
-	<td><input type="Text" name="Uname"/></td>
-</tr>
-<tr>
-	<td>Password</td>
-	<td><input type="Password" name="Pass"/></td>
-</tr>
-<tr><td><input type="submit" value="login"/></td></tr>
-<input type="hidden" name="formm" value="true"/>
-</table>
-</form>
+<div class="row">
+	<form action="login_admin.php" method="post">
+	<div class="col-md-8" style="margin-top:5px;" style="margin-top:5px;">
+		<div class="col-md-3" style="text-align:right;">Username</div>
+		<div class="col-md-6"><input type="Text" name="Uname" required/></div>
+	</div>
+	<div class="col-md-8" style="margin-top:5px;" style="margin-top:5px;">
+		<div class="col-md-3" style="text-align:right;">Password</div>
+		<div class="col-md-6"><input type="Password" name="Pass" required/></div>
+	</div>
+	<div class="col-md-8" style="margin-top:5px;" style="margin-top:5px;"><div class="col-md-6">
+	<button class="btn btn-primary" type="submit" value="">Login</button></div></div>
+	<input type="hidden" name="formm" value="true"/>
+	</form>
+</div>
 </body>
 </html>
 

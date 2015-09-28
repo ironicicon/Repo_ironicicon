@@ -1,13 +1,20 @@
 <?php
+date_default_timezone_set("Asia/Kolkata");
 session_start();
 if(isset($_SESSION['AdUname']))
 {
 include('dbcon.php');
-echo "Welcome ".$_SESSION['AdUname'];
+echo "<p style='text align:center;margin-top:10px;'>Welcome ".$_SESSION['AdUname']."</p>";
 ?>
 <html>
 <head>
 <title>Leadership Resilience Profile</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 <script>
 function leaveChange() {
     if (document.getElementById("Column").value == "Location"){
@@ -98,31 +105,32 @@ font-family: calibri;
 }
 </style>
 </head>
-<body align="center">
-<div id="header"><br/>
-<h1 align="left">Report fetching page</h1>
-<p align="left"><font size="2">Instructions: Select options to extract data.</font></p>
-<div id="req" align="left"><font color="brown">* Required</font></div>
+<body class="container">
+<div class="row col-lg-12" style="margin-top:10px;">
+<h1 class="page-header" align="left">Report fetching page</h1>
 </div>
-<form name="adminHome" action="adminPanel.php" method="post">
-<table>
-	<tr>
-		<td>Column Name:</td>
-		<td><select name="Column" id="Column" onchange="leaveChange()">
-			<option value="Date">Date</option>
-			<option value="Location">Location (Country) </option>
-			<option value="score">Score</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td> Value </td>
-		<td> <input type="text" name="UserInput"/></td><td><div id="message"></div></td>
-	</tr>
-	<tr><td><input type="submit" value="Fetch reports"/></td></tr>
-	<input type="hidden" name="formm" value="formm"/>
-</table>
-</form>
+<div class="row">
+	<form name="adminHome" action="adminPanel.php" method="post">
+		<div class="col-md-8" style="margin-top:5px;">
+			<div class="col-md-3">Column Name:</div>
+			<div class="col-md-3"><select name="Column" id="Column" onchange="leaveChange()">
+				<option value="Date">Date</option>
+				<option value="Location">Location (Country) </option>
+				<option value="score">Score</option>
+				<option value="Sector">Sector</option>
+				<option value="Gender">Gender</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-8" style="margin-top:5px;">
+			<div class="col-md-3"> Value </div>
+			<div class="col-md-3"> <input type="text" name="UserInput"/></div><div class="col-md-3"><div id="message"></div></div>
+		</div>
+		<div class="col-md-8" style="margin-top:5px;">
+			<div class="col-md-3"><input type="submit" value="Fetch reports"/></div></div>
+		<input type="hidden" name="formm" value="formm"/>
+	</form>
+
 <?php
 if(isset($_POST['formm']))
 {	
@@ -147,7 +155,7 @@ if($selected_option=="Date")
 		$fp = fopen($selected_option."_".date("d-M").".xls", "w"); 
 		$schema_insert = ""; 
 		$schema_insert_rows = ""; 
-		echo mysql_num_fields($res);
+		//echo mysql_num_fields($res);
 		for ($i = 1; $i < mysql_num_fields($res); $i++) 
 			{ 
 			$schema_insert_rows.= "ID" . "\t";
@@ -190,7 +198,7 @@ if($selected_option=="Date")
 			fwrite($fp, $schema_insert); 
 		}
 	fclose($fp);
-	?>Click <a href=<?php echo $selected_option."_".date("d-M").".xls"?>>here</a> to get download the csv file<?php
+	?><span class="col-md-4" style="text-align:left;">Click <a href=<?php echo $selected_option."_".date("d-M").".xls"?>>here</a> to get download the csv file</span></div><?php
 	}
 else if($selected_option=="Location")
 	{
@@ -202,15 +210,15 @@ else if($selected_option=="Location")
 		{
 		$sql="SELECT * FROM `result` ";
 		}
-		echo $sql;
+		//echo $sql;
 		$res=mysql_query($sql);
 		$sep = ""; //tabbed character 
 		$fp = fopen($selected_option."_".date("d-M").".xls", "w"); 
 		$schema_insert = ""; 
 		$schema_insert_rows = ""; 
-		for ($i = 1; $i < mysql_num_fields($res); $i++) 
-			{ 
-			$schema_insert_rows.= "ID" . "\t";
+		// for ($i = 1; $i < mysql_num_fields($res); $i++) 
+			// { 
+			$schema_insert_rows.= "Identifier" . "\t";
 			$schema_insert_rows.= "FutureOptimism" . "\t";
 			$schema_insert_rows.= "PresentOptimism" . "\t";
 			$schema_insert_rows.= "PersonalValues" . "\t";
@@ -227,7 +235,7 @@ else if($selected_option=="Location")
 			$schema_insert_rows.= "Date" . "\t";
 			$schema_insert_rows.= "IP" . "\t";
 			$schema_insert_rows.= "Location" . "\t";
-			} 
+		//	} 
 		$schema_insert_rows.="\n"; 
 		fwrite($fp, $schema_insert_rows); 
 		$id=1;
@@ -319,7 +327,7 @@ else
 }
 }
 else{
-echo "Welcome ".$_SESSION['AdUname'];
+echo "<p style='text align:center;margin-top:10px;'>Welcome ".$_SESSION['AdUname']."</p>";
 ?>
 <h3> please login as Admin to check this </h3>
 <?php

@@ -152,6 +152,13 @@ font-family: calibri;
 			<option value="60 and Above">60 and Above</option>
 		</select></div>
 	</div>
+	<div class="col-md-8" style="margin-top:5px;" style="margin-top:5px;">
+		<div class="col-md-6">Sector *</div>
+		<div class="col-md-6"><select name="Sector" style="width:175px;" required>
+			<option value="Public">Public</option>
+			<option value="Private">Private</option>
+		</select></div>
+	</div>
 	<div class="col-md-8" style="margin-top:5px;">
 		<div class="col-md-6">Email *</div>
 		<div class="col-md-6"><input type="email" name="Email" style="width:175px;" required/></div>

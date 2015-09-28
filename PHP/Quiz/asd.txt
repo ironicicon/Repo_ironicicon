@@ -1,0 +1,13 @@
+quoted_identifier - when on - chars inside double quotes are <div class="col-md-8" style="margin-top:5px;"eated as identifier and when of, <div class="col-md-8" style="margin-top:5px;"eated as a literal
+
+syntax for create or replace stored procedure
+	create or replace [stored_procName] @<<input>> <<datatype>> as
+		Sql Statement
+
+syntax for executing stored procedure 
+	exec [stored_procName] parameters
+
+Create a stored procedure - click C<div class="col-md-8" style="margin-top:5px;"l+Shift+M to alter the details
+
+sysname - special type of datatype used to hold the names of system objects , cannot create a column with that datatype
+
