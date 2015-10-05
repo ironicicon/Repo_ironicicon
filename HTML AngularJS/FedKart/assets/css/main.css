@@ -1,0 +1,18 @@
+input[type=text],input[type=number]
+            {
+                height: 40px;
+            }
+            .HyperPageHeader
+            {
+                cursor: pointer;
+                padding-top:10px;
+            }
+            .HyperPageHeader:hover
+            {
+                border-radius: 4px;
+                background: #3399dd;
+            }
+            button
+            {
+                background: green !important;
+            }
