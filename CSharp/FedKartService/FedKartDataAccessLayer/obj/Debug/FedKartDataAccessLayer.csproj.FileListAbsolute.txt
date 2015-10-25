@@ -1,0 +1,7 @@
+C:\Users\dell\Documents\Visual Studio 2012\Projects\Inter\FedKartService\FedKartDataAccessLayer\bin\Debug\FedKartDataAccessLayer.dll.config
+C:\Users\dell\Documents\Visual Studio 2012\Projects\Inter\FedKartService\FedKartDataAccessLayer\bin\Debug\FedKartDataAccessLayer.dll
+C:\Users\dell\Documents\Visual Studio 2012\Projects\Inter\FedKartService\FedKartDataAccessLayer\bin\Debug\FedKartDataAccessLayer.pdb
+C:\Users\dell\Documents\Visual Studio 2012\Projects\Inter\FedKartService\FedKartDataAccessLayer\obj\Debug\FedKartDataAccessLayer.dll
+C:\Users\dell\Documents\Visual Studio 2012\Projects\Inter\FedKartService\FedKartDataAccessLayer\obj\Debug\FedKartDataAccessLayer.pdb
+C:\Users\dell\Documents\Visual Studio 2012\Projects\Inter\FedKartService\FedKartDataAccessLayer\bin\Debug\App.config
+C:\Users\dell\Documents\Visual Studio 2012\Projects\Inter\FedKartService\FedKartDataAccessLayer\obj\Debug\FedKartDataAccessLayer.csprojResolveAssemblyReference.cache
