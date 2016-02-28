@@ -39,6 +39,7 @@ function invokeWhatsApp(whatDevice) {
       $('<a>',{
       text: 'Send Status to WhatsApp',
       title: 'WhatsApp',
+      data-action:"share/whatsapp/share",
       //whatsapp://send - send message
       href: 'whatsapp://send?text='+whatDevice+'&phone=9786471895'
       }).appendTo('body');
