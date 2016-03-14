@@ -24,8 +24,8 @@
 			$('#maps').css('height',$(window).height()*0.85);
 		});
 		
-		$('#ButtonSubmit').click(function(){
-		console.log('poda');
+		function Mail(){
+		
 			$.ajax({
 				beforeSend: function (xhr) {
 					console.log("poda");
@@ -40,8 +40,7 @@
 			$('#PostButtonClick').css('display','block');
 			$('#PostButtonClick').css('opacity','1');
 			$('#PostWishes').css('opacity','1');
-		});
-		
+		}
 		function initialize() {
             directionsDisplay = new google.maps.DirectionsRenderer();
             var Mandapam = new google.maps.LatLng(11.9384116, 79.5146608);
