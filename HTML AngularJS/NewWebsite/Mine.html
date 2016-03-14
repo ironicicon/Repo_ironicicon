@@ -20,19 +20,6 @@
 			$( "#InitialHomeDiv" ).fadeOut(3000, function() {
 				$('#Home').fadeIn("slow");
 			});
-			var uname='api';
-			var pass='key-9e0759da71409f9f3fdc11ca0de95cb0';
-			$.ajax({
-				beforeSend: function (xhr) {
-					console.log("poda");
-					xhr.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-					xhr.setRequestHeader("Access-Control-Allow-Origin","*");
-					xhr.setRequestHeader("poda","poda");
-				},
-				url:'https://api:key-9e0759da71409f9f3fdc11ca0de95cb0@api.mailgun.net/v3/sandboxa7999780db634a53bd36202cdec8e893.mailgun.org/messages',
-				method:'POST',
-				data:'from:"Wedding Greetings<postmaster@sandboxa7999780db634a53bd36202cdec8e893.mailgun.org>"&to:"Ram <ram.penguin@gmail.com>"&text="Test from Test"'
-			});
 			$('section').css('height',$(window).height());
 			$('#maps').css('height',$(window).height()*0.85);
 		});
@@ -80,6 +67,23 @@
                 }
             });
         }
+		
+		$('#ButtonSubmit').click(function(){
+			$.ajax({
+				beforeSend: function (xhr) {
+					console.log("poda");
+					xhr.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+					xhr.setRequestHeader("Access-Control-Allow-Origin","*");
+					xhr.setRequestHeader("poda","poda");
+				},
+				url:'https://api:key-9e0759da71409f9f3fdc11ca0de95cb0@api.mailgun.net/v3/sandboxa7999780db634a53bd36202cdec8e893.mailgun.org/messages',
+				method:'POST',
+				data:'from:"Wedding Greetings<postmaster@sandboxa7999780db634a53bd36202cdec8e893.mailgun.org>"&to:"Ram <ram.penguin@gmail.com>"&text="Test from Test"'
+			});
+			$('#PostButtonClick').css('display','block');
+			$('#PostButtonClick').css('opacity','1');
+			$('#PostWishes').css('opacity','1');
+		});
 	</script>
 	<style>
 		body{
@@ -266,7 +270,7 @@
 	<section id="PostWishes" class=" col-lg-12 container" style="background-image : url('http://www.wallpapereast.com/static/images/HD-Wallpapers1_QlwttNW.jpeg');!important;padding-bottom:5%;color:#fefefe;">
 		<div class="col-md-8">
 			<p class="page-header" style="font-size:24px;">Post your wishes</p>
-			<form action="" method="post" class="form-horizontal" role="form">
+			<div class="form-horizontal" role="form">
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="Name">Name:</label>
 					<div class="col-sm-10">
@@ -290,7 +294,10 @@
 						<button type="submit" id="SubmitBtn" class="btn btn-default">Post Your Wish</button>
 					</div>
 				</div>
-			</form>
+			</div>
+			<div id="PostButtonClick" style="display:none;background:#eee;">
+				<p>Thank you for Your comments</p>
+			</div>
 			<!--<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>-->
 		</div>
 		<div class="navDiv col-md-4">
