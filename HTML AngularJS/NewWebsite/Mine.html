@@ -31,8 +31,7 @@
 		
 			$.ajax({
 				beforeSend: function (xhr) {
-					console.log("poda");
-					xhr.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+					xhr.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded");
 					xhr.setRequestHeader("Access-Control-Allow-Origin","*");
 					xhr.setRequestHeader("Access-Control-Allow-Methods", "POST");
 					
