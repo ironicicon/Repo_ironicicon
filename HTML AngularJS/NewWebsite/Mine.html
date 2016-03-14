@@ -36,9 +36,7 @@
 			
 			console.log(JSON.stringify(jsonData));
 			$.ajax({
-				beforeSend: function (xhr) {
-					 xhr.setRequestHeader("Access-Control-Allow-Origin","*");
-				},
+				
 				url:'https://api:key-9e0759da71409f9f3fdc11ca0de95cb0@api.mailgun.net/v3/sandboxa7999780db634a53bd36202cdec8e893.mailgun.org/messages',
 				method:'POST',
 				datatype:'JSONP',
