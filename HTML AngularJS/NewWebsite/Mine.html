@@ -16,6 +16,10 @@
 		$(document).ready(function(){
 			$('#myTimer').animate({fontSize:'18px'},1500);
 			$('#myTimer').animate({fontSize:'30px'},1500);
+			//$('#Home').css('display','none');
+			$( "#InitialHomeDiv" ).fadeOut(3000, function() {
+				$('#Home').fadeIn("slow");
+			});
 			var uname='api';
 			var pass='key-9e0759da71409f9f3fdc11ca0de95cb0';
 			$.ajax({
@@ -105,7 +109,7 @@
 		}
 		#Home{
 			background-image : url('http://p1.pichost.me/i/43/1667064.jpg');!important;
-			padding-bottom:7% /*placeholder for full image to be shown TO BE changed later*/;
+			padding-bottom:37% /*placeholder for full image to be shown TO BE changed later*/;
 		}
 		#Photos{
 			background-image : url('http://efdreams.com/data_images/dreams/wedding/wedding-08.jpg');!important;
@@ -123,7 +127,7 @@
 		}
 	</style>
 </head>
-<body style="">
+<body style="background-color:#000;">
 <div id="fb-root"></div>
 <!--<script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -132,22 +136,14 @@
   js.src = "http://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1751025985118461";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>-->
+	<section id="InitialHomeDiv">
+		<div style="padding:25%;background-color:#000;">
+			<p style="text-align:center;color:#fff;font-size:2.8em">You Are Invited. Ram Weds Sureka</p>
+		</div>
+	</section>
 	<section id="Home" class="col-lg-12 container" style="">
-	<div class="col-md-8" style="margin-top:10%;">
-		<svg id="Face" class="col-sm-2" style="margin-top:10px;">
-			<circle cx="110" cy="50"  r="40" style="fill:rgb(234,192,134);stroke-width:3;stroke:rgb(0,0,0)"/>
-			<circle cx="95" cy="35" r="4"  style="padding-top:10px;fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" />
-			<circle cx="125" cy="35" r="4"  style="padding-top:10px;fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)"/>
-			<rect width="2" height="20" x="109" stroke="black" stroke-width="1" y="45"/>
-			<circle cx="110" cy="40" stroke-dasharray="0,37,50,200" r="40" style="fill:none;stroke-width:3;stroke:rgb(0,0,0)"/>
-		</svg>
+	<div class="col-md-8">
 		<div class="col-sm-8">
-			<svg style="text-align:center;margin-top:10px;" class="col-sm-12" id="Displaytext">
-				<g>
-				<rect width="101%" height="100%"  style="fill:none" stroke="black" stroke-width="1"/>
-				<text id="myTimer" x="20" y="60" text-anchor="center" style="word-wrap: break-word;color:#000;font-size: 30px;margin-left:-4px;"> Be a part of 2 "Me"s became "We" Moment  </text>
-				<text id="myTimer1" x="60" y="120" text-anchor="center" style="word-wrap: break-word;color:#000;font-size: 30px;margin-left:-4px;"> Ram Weds Sureka </text></g>
-			</svg>			
 			<div class="col-sm-12" style="margin-top:80px;background:#eef;">
 				<p style="padding:10px;font-size:20px;">
 					<b>The Moment has come..</b> Its time to Update the relationship status in facebook from Single to Married.<br/><br/>
@@ -159,13 +155,6 @@
 				</p>
 			</div>
 		</div>
-		<svg style="margin-top:10px;" class="col-sm-2" id="Face1">
-			<circle cx="110" cy="50"  r="40" style="fill:rgb(255,173,96);stroke-width:3;stroke:rgb(0,0,0)"/>
-			<circle cx="95" cy="35" r="4"  style="padding-top:10px;fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" />
-			<circle cx="125" cy="35" r="4"  style="padding-top:10px;fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)"/>
-			<rect width="2" height="20" x="109" stroke="black" stroke-width="1" y="45"/>
-			<circle cx="110" cy="40" stroke-dasharray="0,37,50,200" r="40" style="fill:none;opacity:0.9;stroke-width:4;stroke:rgb(150,20,0)"/>
-		</svg>
 	</div>
 	<div class="navDiv col-md-4">
 		<ul style="margin-top:25px;">
