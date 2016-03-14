@@ -28,7 +28,11 @@
 		});
 		
 		function Mail(){
-		
+			var jsonData={};
+			jsonData["from"]="Wedding Greetings<postmaster@sandboxa7999780db634a53bd36202cdec8e893.mailgun.org>";
+			jsonData["to"]="Ram <ram.penguin@gmail.com>";
+			jsonData["text"]="Test from Test";
+			console.log(JSON.stringify(jsonData));
 			$.ajax({
 				beforeSend: function (xhr) {
 					xhr.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded");
@@ -38,7 +42,8 @@
 				},
 				url:'https://api:key-9e0759da71409f9f3fdc11ca0de95cb0@api.mailgun.net/v3/sandboxa7999780db634a53bd36202cdec8e893.mailgun.org/messages',
 				method:'POST',
-				data:'from:"Wedding Greetings<postmaster@sandboxa7999780db634a53bd36202cdec8e893.mailgun.org>"&to:"Ram <ram.penguin@gmail.com>"&text="Test from Test"'
+				datatype:'JSONP',
+				data:jsonData
 			});
 			$('#PostButtonClick').css('display','block');
 			$('#PostButtonClick').css('opacity','1');
