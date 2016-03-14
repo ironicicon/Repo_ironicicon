@@ -4,7 +4,7 @@
 	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
+	<script type="text/javascript" src="scripts/countdown.js"></script>
 	<script>
 	var directionsDisplay;
         var directionsService = new google.maps.DirectionsService();
@@ -137,8 +137,14 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>-->
 	<section id="InitialHomeDiv">
-		<div style="padding:25%;background-color:#000;">
+		<div style="padding:20%;background-color:#000;">
 			<p style="text-align:center;color:#fff;font-size:2.8em">You Are Invited. Ram Weds Sureka</p>
+			<div class="getting-started" style="text-align:right;color:#fff;font-size:3em">2016/05/12</div>
+			<script type="text/javascript">
+			$('.getting-started').countdown('2016/05/12', function(event) {
+				$(this).html("Date:2016/05/12<br/>"+event.strftime('%w weeks %d days %H Hours %M mins %S Sec'));
+			});
+			</script>
 		</div>
 	</section>
 	<section id="Home" class="col-lg-12 container" style="">
@@ -163,6 +169,12 @@
 			<li class="noBullet"><a href="#Location">Location</a></li>
 			<li class="noBullet"><a href="#PostWishes">Post Wish</a></li>
 		</ul>
+		<div class="getting-started" style="margin-top:25%;color:#fff;font-size:1.6em">2016/05/12</div>
+		<script type="text/javascript">
+			$('.getting-started').countdown('2016/05/12 09:30:00', function(event) {
+				$(this).html("Date:2016/05/12<br/><div style=\"margin-top:1%;\">"+event.strftime('%w weeks %d days %H Hours %M mins %S Sec')+"</div>");
+			});
+		</script>
 	</div>
 	</section>
 	<section id="Photos" class="col-lg-12 container" style="">
@@ -202,6 +214,12 @@
 				<li class="noBullet"><a href="#Location">Location</a></li>
 				<li class="noBullet"><a href="#PostWishes">Post Wish</a></li>
 			</ul>
+			<div class="getting-started" style="margin-top:25%;color:#fff;font-size:1.6em">2016/05/12</div>
+		<script type="text/javascript">
+			$('.getting-started').countdown('2016/05/12 09:30:00', function(event) {
+				$(this).html("Date:2016/05/12<br/><div style=\"margin-top:1%;\">"+event.strftime('%w weeks %d days %H Hours %M mins %S Sec')+"</div>");
+			});
+		</script>
 		</div>
 	</section>
 	<section id="Location" class="col-lg-12 container" style="">
@@ -217,6 +235,12 @@
 				<li class="noBullet"><a href="#Location">Location</a></li>
 				<li class="noBullet"><a href="#PostWishes">Post Wish</a></li>
 			</ul>
+			<div class="getting-started" style="margin-top:25%;color:#fff;font-size:1.6em">2016/05/12</div>
+		<script type="text/javascript">
+			$('.getting-started').countdown('2016/05/12 09:30:00', function(event) {
+				$(this).html("Date:2016/05/12<br/><div style=\"margin-top:1%;\">"+event.strftime('%w weeks %d days %H Hours %M mins %S Sec')+"</div>");
+			});
+		</script>
 			<div style="background-color:#fff;">
 				<p class="page-header" style="color:#eee;text-align:center;font-size:28px;">Routes</p>
 				<p id="init" style="font-size: 12px; margin-top: 5px;">
@@ -269,6 +293,12 @@
 				<li class="noBullet"><a href="#Location">Location</a></li>
 				<li class="noBullet"><a href="#PostWishes">Post Wish</a></li>
 			</ul>
+			<div class="getting-started" style="margin-top:25%;color:#fff;font-size:1.6em">2016/05/12</div>
+		<script type="text/javascript">
+			$('.getting-started').countdown('2016/05/12 09:30:00', function(event) {
+				$(this).html("Date:2016/05/12<br/><div style=\"margin-top:1%;\">"+event.strftime('%w weeks %d days %H Hours %M mins %S Sec')+"</div>");
+			});
+		</script>
 		</div>
 	</section>
 <body>
