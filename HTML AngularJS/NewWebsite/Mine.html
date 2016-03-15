@@ -45,14 +45,13 @@
 					$('#PostWishes').css('opacity','1');
 				},
 				complete:function(req,res,xhr){
-					console.log("req:"+req.responseText);
 					var responseContent=req.responseText.split('|');
 					var content="";
 					$.each(responseContent,function(index,value){
 						if(value!=""){
 							var jsonob="{"+value+"}";
 							console.log(jsonob);
-							content+="<p>"+($.parseJSON(jsonob)).WishesFrom+"</p>";
+							content+="<p>"+($.parseJSON(jsonob))+"</p>";
 						}
 					});
 					$('#CommentsDiv').html(content);
