@@ -28,22 +28,24 @@
 			});
 			$.ajax({
 				url: "http://mailgunemail.esy.es/data.json"
-			}).success(function(req){
-				$('#data').append(JSON.stringify(data));
-				var responseContent=req.responseText.split('|');
-				var content="";
-				$.each(responseContent,function(index,value){
-					if(value!=""){
-						var jsonst="{"+value+"}";
-						var jsonob=$.parseJSON(jsonst);
-						var name=jsonob["WishesFrom"];
-						var Email=jsonob["FromEmail"];
-						var Wishes=jsonob["Wishes"];
-						var TimeStamp=jsonob["TimeStamp"];
-						content+="<div style=\"padding:4px;\"><p class=\"page-header\"><b><a href=\"mailto:"+Email+"\">"+name+"</a></b> Says</p><p style=\"font-size:14px;\">"+Wishes+"</p><p>On :"+TimeStamp+"</p></div>";
+				success:function(req){
+					$('#data').append(JSON.stringify(data));
+					var responseContent=req.responseText.split('|');
+					var content="";
+					$.each(responseContent,function(index,value){
+						if(value!=""){
+							var jsonst="{"+value+"}";
+							var jsonob=$.parseJSON(jsonst);
+							var name=jsonob["WishesFrom"];
+							var Email=jsonob["FromEmail"];
+							var Wishes=jsonob["Wishes"];
+							var TimeStamp=jsonob["TimeStamp"];
+							content+="<div style=\"padding:4px;\"><p class=\"page-header\"><b><a href=\"mailto:"+Email+"\">"+name+"</a></b> Says</p><p style=\"font-size:14px;\">"+Wishes+"</p><p>On :"+TimeStamp+"</p></div>";
+						}
+					});
+					$('#CommentsDiv').html(content);
+				}
 			});
-			console.log(content);
-			$('#CommentsDiv').html(content);	
 			});
 		});
 		
