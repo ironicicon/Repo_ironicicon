@@ -27,7 +27,7 @@
 				Mail();
 			});
 			$.ajax({
-				url: "http://mailgunemail.esy.es/data.json"
+				url: "http://mailgunemail.esy.es/data.json",
 				success:function(req){
 					var responseContent=req.responseText.split('|');
 					var content="";
