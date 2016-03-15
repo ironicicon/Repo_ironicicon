@@ -50,7 +50,9 @@
 					var content="";
 					$.each(responseContent,function(index,value){
 						if(value!=""){
-							content+="<p>"+value+"</p>";
+							var jsonob="{"+value+"}";
+							console.log(jsonob);
+							content+="<p>"+$.parseJSON(jsonob.WishesFrom)+"</p>";
 						}
 					});
 					$('#CommentsDiv').html(content);
