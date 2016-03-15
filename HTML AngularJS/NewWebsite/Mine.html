@@ -26,7 +26,7 @@
 			$('#ButtonSubmit').click(function(){
 				Mail();
 			});
-			$('http://mailgunemail.esy.es/data.json',function(req,res){
+			$.get('http://mailgunemail.esy.es/data.json',function(req,res){
 				var responseContent=req.responseText.split('|');
 				var content="";
 				$.each(responseContent,function(index,value){
@@ -37,7 +37,7 @@
 						var Email=jsonob["FromEmail"];
 						var Wishes=jsonob["Wishes"];
 						var TimeStamp=jsonob["TimeStamp"];
-						content+="<p class=\"page-header\"><b><a href=\"mailto:"+Email+"\">"+name+"</a></b> Says</p><p style=\"font-size:14px;\">"+Wishes+"</p><p>On :"+TimeStamp+"</p>";
+						content+="<div style=\"padding:4px;\"><p class=\"page-header\"><b><a href=\"mailto:"+Email+"\">"+name+"</a></b> Says</p><p style=\"font-size:14px;\">"+Wishes+"</p><p>On :"+TimeStamp+"</p></div>";
 					}
 				});
 				$('#CommentsDiv').html(content);	
@@ -71,7 +71,7 @@
 							var Email=jsonob["FromEmail"];
 							var Wishes=jsonob["Wishes"];
 							var TimeStamp=jsonob["TimeStamp"];
-							content+="<p class=\"page-header\"><b><a href=\"mailto:"+Email+"\">"+name+"</a></b> Says</p><p style=\"font-size:14px;\">"+Wishes+"</p><p>On :"+TimeStamp+"</p>";
+							content+="<div style=\"padding:4px;\"><p class=\"page-header\"><b><a href=\"mailto:"+Email+"\">"+name+"</a></b> Says</p><p style=\"font-size:14px;\">"+Wishes+"</p><p>On :"+TimeStamp+"</p></div>";
 						}
 					});
 					$('#CommentsDiv').html(content);
