@@ -45,17 +45,15 @@
 					$('#PostWishes').css('opacity','1');
 				},
 				complete:function(req,res,xhr){
-					$.get('http://mailgunemail.esy.es/data.json',function(req,res){
-						console.log("req:"+req);
-						var responseContent=req.responseText.split('|');
-						var content="";
-						$.each(responseContent,function(index,value){
-							if(value!=""){
-								content+="<p>"+value+"</p>";
-							}
-						});
-						$('#CommentsDiv').html(content);
-					});	
+					console.log("req:"+req.responseText);
+					var responseContent=req.responseText.split('|');
+					var content="";
+					$.each(responseContent,function(index,value){
+						if(value!=""){
+							content+="<p>"+value+"</p>";
+						}
+					});
+					$('#CommentsDiv').html(content);
 				}
 			});
 			
