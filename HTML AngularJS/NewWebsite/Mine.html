@@ -44,8 +44,8 @@
 					$('#PostButtonClick').css('opacity','1');
 					$('#PostWishes').css('opacity','1');
 				},
-				complete:function(){
-					console.log('poda');
+				complete:function(req,res,xhr){
+					console.log(req);
 				}
 			});
 			
