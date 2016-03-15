@@ -313,8 +313,15 @@
 			<div id="CommentsDiv"></div>
 			<script>
 				$.get('http://mailgunemail.esy.es/data.json',function(req,res){
-					debugger;
 					console.log(req);
+					var responseContent=req.responseText.split('|');
+					var content="";
+					$.each(responseContent,function(index,value){
+						if(value!=""){
+							content+="<p>"+value+"</p>";
+						}
+					});
+					$('#CommentsDiv').html(content);
 				});
 			</script>
 			<!--<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>-->
