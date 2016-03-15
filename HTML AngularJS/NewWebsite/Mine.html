@@ -49,9 +49,13 @@
 					var content="";
 					$.each(responseContent,function(index,value){
 						if(value!=""){
-							var jsonob="{"+value+"}";
-							console.log(jsonob);
-							content+="<p>"+($.parseJSON(jsonob))+"</p>";
+							var jsonst="{"+value+"}";
+							var jsonob=$.parseJSON(jsonst);
+							var name=jsonob["WishesFrom"];
+							var Email=jsonob["FromEmail"];
+							var Wishes=jsonob["Wishes"];
+							var TimeStamp=jsonob["TimeStamp"];
+							content+="<p class=\"page-header\"><b><a href=\"mailto:"+Email+"\">"+name+"</a></b> Says</p><p style=\"font-size:14px;\">"+Wishes+"</p><p>On :"+TimeStamp+"</p>";
 						}
 					});
 					$('#CommentsDiv').html(content);
