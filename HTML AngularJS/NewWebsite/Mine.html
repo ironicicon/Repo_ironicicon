@@ -33,10 +33,6 @@
 			jsonData["WishesFrom"]=$('#Name').val();
 			jsonData["FromEmail"]=$('#Email').val();
 			jsonData["Wishes"]=$('#Wish').val();
-			
-			
-			
-			console.log(JSON.stringify(jsonData));
 			$.ajax({
 				url:'http://mailgunemail.esy.es/',
 				method:'POST',
@@ -44,16 +40,15 @@
 				data:jsonData,
 				
 				success:function(req,res,xhr){
-					debugger;
-					console.log(xhr);
+					$('#PostButtonClick').css('display','block');
+					$('#PostButtonClick').css('opacity','1');
+					$('#PostWishes').css('opacity','1');
 				},
 				complete:function(){
 					console.log('poda');
 				}
 			});
-			$('#PostButtonClick').css('display','block');
-			$('#PostButtonClick').css('opacity','1');
-			$('#PostWishes').css('opacity','1');
+			
 		}
 		function initialize() {
             directionsDisplay = new google.maps.DirectionsRenderer();
