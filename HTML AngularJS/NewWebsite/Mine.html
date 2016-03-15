@@ -41,11 +41,13 @@
 				method:'POST',
 				datatype:'JSONP',
 				data:jsonData,
+				
+				success:function(req,res,xhr){
+					debugger;
+					console.log(xhr);
+				},
 				complete:function(){
 					console.log('poda');
-				},
-				success:function(req,res,xhr){
-					console.log(res);
 				}
 			});
 			$('#PostButtonClick').css('display','block');
