@@ -29,7 +29,6 @@
 			$.ajax({
 				url: "http://mailgunemail.esy.es/data.json"
 				success:function(req){
-					$('#data').append(JSON.stringify(data));
 					var responseContent=req.responseText.split('|');
 					var content="";
 					$.each(responseContent,function(index,value){
