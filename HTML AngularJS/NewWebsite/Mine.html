@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <head>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -36,11 +37,16 @@
 			
 			console.log(JSON.stringify(jsonData));
 			$.ajax({
-				
-				url:'https://api:key-9e0759da71409f9f3fdc11ca0de95cb0@api.mailgun.net/v3/sandboxa7999780db634a53bd36202cdec8e893.mailgun.org/messages',
+				url:'http://ironicic.5gbfree.com/MailgunEmail/',
 				method:'POST',
 				datatype:'JSONP',
-				data:jsonData
+				data:jsonData,
+				complete:function(){
+					console.log('poda');
+				},
+				success:function(req,res,xhr){
+					console.log(res);
+				}
 			});
 			$('#PostButtonClick').css('display','block');
 			$('#PostButtonClick').css('opacity','1');
