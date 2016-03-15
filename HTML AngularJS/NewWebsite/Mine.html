@@ -30,9 +30,10 @@
 		
 		function Mail(){
 			var jsonData={};
-			jsonData["from"]="Wedding Greetings<postmaster@sandboxa7999780db634a53bd36202cdec8e893.mailgun.org>";
-			jsonData["to"]="Ram <ram.penguin@gmail.com>";
-			jsonData["text"]="Test from Test";
+			jsonData["WishesFrom"]=$('#Name').text();
+			jsonData["FromEmail"]=$('#Email').text();
+			jsonData["Wishes"]=$('#Wish').text();
+			
 			
 			
 			console.log(JSON.stringify(jsonData));
