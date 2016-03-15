@@ -313,7 +313,7 @@
 			<div id="CommentsDiv"></div>
 			<script>
 				$.get('http://mailgunemail.esy.es/data.json',function(req,res){
-					console.log(req);
+					console.log("req:"+req);
 					var responseContent=req.responseText.split('|');
 					var content="";
 					$.each(responseContent,function(index,value){
