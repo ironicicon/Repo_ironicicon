@@ -52,7 +52,7 @@
 						if(value!=""){
 							var jsonob="{"+value+"}";
 							console.log(jsonob);
-							content+="<p>"+$.parseJSON(jsonob.WishesFrom)+"</p>";
+							content+="<p>"+($.parseJSON(jsonob)).WishesFrom+"</p>";
 						}
 					});
 					$('#CommentsDiv').html(content);
