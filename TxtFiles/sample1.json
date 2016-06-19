@@ -1,0 +1,1453 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Carts",
+    "description": "Digital Commerce cart APIs",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/v1/carts",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "Create Cart",
+        "description": "createDefault=true: Create new cart with default values, payload ignored\ncreateDefault=false/null: Create cart with data in payload",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "cart details",
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
+          },
+          {
+            "name": "createDefault",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "default value is false. If value is true new cart with default values is returned."
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart Created",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "201": {
+            "description": "Cart Created"
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}": {
+      "get": {
+        "summary": "Get Cart",
+        "description": "Get the cart details",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart Details",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/preview": {
+      "post": {
+        "summary": "Cart Preview",
+        "description": "Cart Preview calculated using existing cart data + delta changes sent part of payload",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "createDefault",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "default value is false. If value is true new line with default values is added"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/cart"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Changed Cart preview not yet comitted / changed in EP",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices": {
+      "post": {
+        "summary": "Duplicate Line",
+        "description": "Duplicate Line",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "createDefault",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "default value is false. If value is true new line with default values is added"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/lineOfService"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "another Line added",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}": {
+      "post": {
+        "summary": "Duplicate Line",
+        "description": "Duplicate Line",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/lineOfService"
+            }
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "duplicate",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "default value is false. If value is true another line is cloned same as passed line id, else line is updated"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "another Line added",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Line",
+        "description": "Delete Line",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Line Deleted",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/device": {
+      "post": {
+        "summary": "Add / Update device",
+        "description": "Add / Update device to line of service",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "device",
+            "in": "body",
+            "description": "device details",
+            "schema": {
+              "$ref": "#/definitions/device"
+            }
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete device",
+        "description": "delete device to line of service",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/accessories": {
+      "post": {
+        "summary": "Add accessory",
+        "description": "Add accessory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "accessory details",
+            "schema": {
+              "$ref": "#/definitions/accessory"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/accessories/{accessoryID}": {
+      "post": {
+        "summary": "Add / Update accessory",
+        "description": "Add / Update accessory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "accessoryID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "SKU of accessory"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "accessory details",
+            "schema": {
+              "$ref": "#/definitions/accessory"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete accessory",
+        "description": "Delete accessory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "accessoryID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/services": {
+      "get": {
+        "summary": "Get Services",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "zipCode",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Services",
+            "schema": {
+              "$ref": "#/definitions/services"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add/Update Services",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/service"
+              }
+            },
+            "required": true
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Services",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/services/validate": {
+      "post": {
+        "summary": "Validate Services selection",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/service"
+              }
+            },
+            "required": true
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Services",
+            "schema": {
+              "$ref": "#/definitions/services"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/vi/carts/{cartID}/promotions": {
+      "post": {
+        "summary": "Apply Promotions",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/promotion"
+              }
+            },
+            "required": true
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Apply Promotions",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/promotion"
+              }
+            },
+            "required": true
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "accessory": {
+      "$ref": "#/definitions/product"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        }
+      }
+    },
+    "cart": {
+      "type": "object",
+      "properties": {
+        "accessories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accessory"
+          }
+        },
+        "profile": {
+          "$ref": "#/definitions/profile"
+        },
+        "cartId": {
+          "type": "string"
+        },
+        "lineOfServices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lineOfService"
+          }
+        },
+        "pricing": {
+          "$ref": "#/definitions/pricing"
+        }
+      }
+    },
+    "carts": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/metadata"
+        },
+        "cart": {
+          "$ref": "#/definitions/cart"
+        }
+      }
+    },
+    "device": {
+      "$ref": "#/definitions/product"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "userMessage": {
+            "type": "string"
+          },
+          "systemMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "lineOfService": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "lineNo": {
+          "type": "string"
+        },
+        "device": {
+          "$ref": "#/definitions/device"
+        },
+        "plan": {
+          "$ref": "#/definitions/plan"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/service"
+          }
+        },
+        "simKit": {
+          "$ref": "#/definitions/simKit"
+        },
+        "pricing": {
+          "$ref": "#/definitions/pricing"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "pageCount": {
+          "description": "Total pages based on per page record count",
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "string"
+        },
+        "page": {
+          "description": "The current page number",
+          "type": "string"
+        },
+        "totalRecordCount": {
+          "type": "string"
+        }
+      }
+    },
+    "plan": {
+      "$ref": "#/definitions/product"
+    },
+    "pricing": {
+      "type": "object",
+      "properties": {
+        "mrp": {
+          "$ref": "#/definitions/price"
+        },
+        "listPrice": {
+          "$ref": "#/definitions/price"
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "contractTerm": {
+              "type": "string"
+            },
+            "payNowAmount": {
+              "$ref": "#/definitions/price"
+            },
+            "monthlyAmount": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "promotions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/promotion"
+          }
+        },
+        "subTotal": {
+          "type": "object",
+          "properties": {
+            "payNowPrice": {
+              "$ref": "#/definitions/price"
+            },
+            "monthlyPrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "tax": {
+          "type": "object",
+          "properties": {
+            "totalTax": {
+              "$ref": "#/definitions/price"
+            },
+            "countyTax": {
+              "$ref": "#/definitions/price"
+            },
+            "federalTax": {
+              "$ref": "#/definitions/price"
+            },
+            "stateTax": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "total": {
+          "type": "object",
+          "properties": {
+            "payNowPrice": {
+              "$ref": "#/definitions/price"
+            },
+            "monthlyPrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        }
+      }
+    },
+    "price": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "product": {
+      "type": "object",
+      "properties": {
+        "availability": {
+          "enum": [
+            "AVAILABLE",
+            "BACKORDER",
+            "PRE-ORDER"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "enum": [
+            "AVAILABLE",
+            "BACKORDER",
+            "PRE-ORDER"
+          ],
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "colorSwatch": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "familyId": {
+          "type": "string"
+        },
+        "familyName": {
+          "type": "string"
+        },
+        "legalText": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        },
+        "memoryUOM": {
+          "type": "string"
+        },
+        "offerId": {
+          "type": "string"
+        },
+        "offerName": {
+          "type": "string"
+        },
+        "pricing": {
+          "$ref": "#/definitions/pricing"
+        },
+        "productImageURL": {
+          "type": "string"
+        },
+        "productSubType": {
+          "type": "string"
+        },
+        "productType": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "skuName": {
+          "type": "string"
+        },
+        "SOCs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "billing": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "$ref": "#/definitions/address"
+            },
+            "payment": {
+              "type": "object",
+              "properties": {
+                "nameOnCard": {
+                  "type": "string"
+                },
+                "creditCardNumber": {
+                  "type": "string"
+                },
+                "expirationDate": {
+                  "type": "string"
+                },
+                "cvv": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "creditLevel": {
+          "type": "string"
+        },
+        "personalInfo": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "emailId": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "carrier": {
+              "type": "string"
+            }
+          }
+        },
+        "shipping": {
+          "$ref": "#/definitions/address"
+        }
+      }
+    },
+    "promotion": {
+      "type": "object",
+      "properties": {
+        "promoType": {
+          "type": "string"
+        },
+        "promoCode": {
+          "type": "string"
+        },
+        "promoId": {
+          "type": "string"
+        },
+        "promoTitle": {
+          "type": "string"
+        },
+        "discountValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "service": {
+      "$ref": "#/definitions/product"
+    },
+    "services": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/metadata"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/service"
+          }
+        }
+      }
+    },
+    "simKit": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "payNowPrice": {
+          "type": "number",
+          "format": "float"
+        },
+        "monthlyPrice": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
