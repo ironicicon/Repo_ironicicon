@@ -1,0 +1,49 @@
+﻿body {
+	font-family:'Trebuchet MS';
+}
+.BGImg {
+	background: url('../images/HomeBG.jpg');
+	padding-bottom:45%;
+	width: 100%;
+	background-size: cover;
+}
+.CustomNavBar {
+	padding-top:10px;
+}
+.CustomNavBarHyperlink {
+	color:white;
+	border-bottom:3px solid green;
+}
+	.CustomNavBarHyperlink:hover {
+		color:white;
+	}
+#Services {
+	display:table-row;
+	height:100% !important;
+	padding-bottom:5%;
+}
+.heading {
+	font-size:1.6em;
+	font-style:oblique;
+	font-weight:bold;
+}
+.scrolling {
+	background-color:black;
+	padding-top:2px;
+	width:100%;
+	position:fixed;
+	display:block;
+}
+.servicesItem {
+	border:1px solid green;
+	height:200px;
+}
+	.servicesItem > p {
+		padding:5px;
+		font-size:14px;
+	}
+	.servicesItem:hover {
+		background-color:black;
+		color:white !important;
+
+	}
