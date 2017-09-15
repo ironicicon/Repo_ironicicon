@@ -24,6 +24,6 @@
 
 function getContent(htmlValue){
 	$.get( htmlValue, function( data ) {
-		$('#innerContent').html(res);
+		$('#innerContent').html(data);
 	});
 }
