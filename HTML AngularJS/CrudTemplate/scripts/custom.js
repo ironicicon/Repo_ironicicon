@@ -23,11 +23,7 @@
 });
 
 function getContent(htmlValue){
-	$.ajax({
-		url:htmlValue,
-		method:'get',
-		complete:function(req,res){
-			$('#innerContent').html(res);
-		}
+	$.get( htmlValue, function( data ) {
+		$('#innerContent').html(res);
 	});
 }
