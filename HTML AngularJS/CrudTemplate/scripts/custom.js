@@ -26,7 +26,7 @@ function getContent(htmlValue){
 	$.ajax({
 		url:htmlValue,
 		method:'get',
-		complete:function(res){
+		complete:function(req,res){
 			$('#innerContent').html(res);
 		}
 	});
