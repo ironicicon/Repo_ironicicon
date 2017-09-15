@@ -1,0 +1,23 @@
+﻿body {
+	font-family:'Consolas';
+	color:#00ff00;
+}
+a,a:hover{
+	color:#00ff00;
+}
+#initialLoad{
+	opacity:0.8;
+	
+}
+#initialLoad >h3{
+	margin-left:35%;
+	margin-top:20%;
+}
+#menu{
+	padding:10px;
+	background-color:#222;
+}
+#menu >p{
+	text-align:center;
+	margin-top:1%;
+}

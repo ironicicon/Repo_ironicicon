@@ -1,0 +1,31 @@
+﻿body {
+	font-family:'Segoe UI';
+}
+#game{
+	font-family:'calibri';
+}
+#findtext{
+	padding:5%;
+	background-color:#abc;
+	font-size:1.6em;
+}
+#findtext >h3{
+	margin-left:3%;
+}
+#hint{
+	padding:5%;
+	background-color:#cba;
+	font-size:1.6em;
+}
+#points{
+	margin-top:5px;
+	padding:5%;
+	background-color:#eee;
+	font-size:1.6em;
+}
+.hint:hover{
+	color:#4a4;
+	text-decoration:underline;
+}
+
+
